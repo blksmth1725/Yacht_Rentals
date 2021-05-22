@@ -39,11 +39,11 @@ const BoatSchema = new mongoose.Schema({
     type: Number,
   },
   images: {
-    type: String,
+    type: [String],
   },
   description: {
     type: String,
   },
 });
 
-module.exports = User = mongoose.model("user", BoatSchema);
+module.exports = Boat = mongoose.model("boat", BoatSchema);
