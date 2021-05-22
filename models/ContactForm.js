@@ -20,4 +20,4 @@ const ContactFormSchema = new mongoose.Schema({
   },
 });
 
-module.exports = ContactForm = mogoose.model("contactForm", ContactFormSchema);
+module.exports = ContactForm = mongoose.model("contactForm", ContactFormSchema);
