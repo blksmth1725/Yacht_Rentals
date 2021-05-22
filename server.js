@@ -7,11 +7,12 @@ const app = express();
 //Connect Database
 connectDB();
 
+//Init middleware
+app.use(express.json({ extended: false }));
+
 app.get("/", (req, res) => res.send("API Running"));
 
 //Define our routes
-app.use("/api/auth", require("./routes/api/auth"));
-app.use("/api/user", require("./routes/api/user"));
 app.use("/api/boats", require("./routes/api/boats"));
 app.use("/api/contactForm", require("./routes/api/contactForm"));
 
