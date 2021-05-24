@@ -43,4 +43,23 @@ router.post(
   },
 );
 
+//@route     GET api/profile/
+//@desc      Get all contactForms
+//@access    Private
+
+router.get("/", async (req, res) => {
+  try {
+    const contactForm = await ContactForm.find().populate("contactForm", [
+      "name",
+      "email",
+      "phone",
+      "date",
+      "description",
+    ]);
+    res.json(contactForm);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
 module.exports = router;
