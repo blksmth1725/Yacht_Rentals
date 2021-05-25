@@ -1,3 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://chseen1725:za7mZ9F4AAF7AaMZk23f@yachtrentals.ep7eg.mongodb.net/YacthRentals?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://chseen1725:za7mZ9F4AAF7AaMZk23f@yachtrentals.ep7eg.mongodb.net/YacthRentals?retryWrites=true&w=majority",
+  "jwtSecret": "5$L%!N6C*y$6!5@nX8p23PiEeY72GkM97i6"
 }
