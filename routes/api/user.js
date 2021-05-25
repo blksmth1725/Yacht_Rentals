@@ -32,7 +32,9 @@ router.post(
       // See if User exists
       let user = await User.findOne({ email });
       if (user) {
-        res.status(400).json({ errors: [{ msg: "User already exists" }] });
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "User already exists" }] });
       }
       // Creation of user INSTANCE (NOT SAVED YET)
       user = new User({
@@ -44,7 +46,7 @@ router.post(
       // Encrypt Password
       const salt = await bcrypt.genSalt(10);
 
-      user.passowrd = await bcrypt.hash(password, salt);
+      user.password = await bcrypt.hash(password, salt);
 
       // NOW User is saved
       await user.save();
