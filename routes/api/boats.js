@@ -2,57 +2,32 @@ const express = require("express");
 const router = express.Router();
 const { check, validationResult } = require("express-validator");
 
-// @route POST api/boats
-// @desc Post Boat Information
-// @access public
+const Boats = require("../../models/Boats");
+const User = require("../../models/User");
 
-//  make: {
-//     type: String,
-//   },
-//   model: {
-//     type: String,
-//   },
-//   name: {
-//     type: String,
-//   },
-//   length: {
-//     type: Number,
-//   },
-//   rate: {
-//     type: Number,
-//   },
-//   addOns: [
-//     {
-//       jetski: {
-//         type: Number,
-//       },
-//       kayak: {
-//         type: Number,
-//       },
-//       alcohol: {
-//         type: Number,
-//       },
-//       food: {
-//         type: Number,
-//       },
-//       cake: {
-//         type: Number,
-//       },
-//     },
-//   ],
-//   maxCapacity: {
-//     type: Number,
-//   },
-//   images: {
-//     type: [String],
-//   },
-//   description: {
-//     type: String,
-//   },
-// });
+router.get("/boats/user", auth, (req, res) => {
+  try {
+    const boats = await Boats.find().sort({ date: -1 });
+    res.json(boats);
+  } catch (err) {
+    console.error(err.meassge);
+    res.status(500).send("Server Error");
+  }
+});
+
+router.get("/boats/", (req, res) => {
+  try {
+    const boats = await Boats.find().sort({ date: -1 });
+    res.json(boats);
+  } catch (err) {
+    console.error(err.meassge);
+    res.status(500).send("Server Error");
+  }
+});
 
 router.post(
   "/",
+  auth,
   [
     check("make", "Please provide a make").not().isEmpty(),
     check("model", "Please provide a model").not().isEmpty(),

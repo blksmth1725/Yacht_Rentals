@@ -59,6 +59,10 @@ const BoatSchema = new mongoose.Schema({
   description: {
     type: String,
   },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 module.exports = Boat = mongoose.model("boat", BoatSchema);

@@ -23,6 +23,10 @@ const ContactFormSchema = new mongoose.Schema({
   description: {
     type: String,
   },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 module.exports = ContactForm = mongoose.model("contactForm", ContactFormSchema);
