@@ -19,39 +19,34 @@ const BoatSchema = new mongoose.Schema({
     required: true,
   },
   length: {
-    type: Number,
+    type: String,
     required: true,
   },
   rate: {
-    type: Number,
+    type: String,
     required: true,
   },
   addOns: [
     {
       jetski: {
-        type: Number,
-        required: true,
+        type: String,
       },
       kayak: {
-        type: Number,
-        required: true,
+        type: String,
       },
       alcohol: {
-        type: Number,
-        required: true,
+        type: String,
       },
       food: {
-        type: Number,
-        required: true,
+        type: String,
       },
       cake: {
-        type: Number,
-        required: true,
+        type: String,
       },
     },
   ],
   maxCapacity: {
-    type: Number,
+    type: String,
   },
   images: {
     type: [String],

@@ -28,7 +28,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { make, model, name, length, rate } = req.body;
+    const { make, model, name, length, rate, addOns } = req.body;
 
     // Build boat object
     const boatsFields = {};
@@ -38,6 +38,9 @@ router.post(
     if (name) boatsFields.name = name;
     if (length) boatsFields.length = length;
     if (rate) boatsFields.rate = rate;
+    if (addOns) {
+      boatsFields.addons = addOns;
+    }
 
     try {
       let boat = await Boats.findOne({ user: req.user.id });
@@ -74,6 +77,30 @@ router.get("/", async (req, res) => {
     res.json(boats);
   } catch (err) {
     console.error(err.meassge);
+    res.status(500).send("Server Error");
+  }
+});
+
+router.put("/", auth, async (req, res) => {
+  const { jetski, kayak, alcohol, food, cake } = req.body;
+
+  const newAddOn = {
+    jetski,
+    kayak,
+    alcohol,
+    food,
+    cake,
+  };
+  try {
+    const boat = await Boats.findOne({ user: req.user.id });
+
+    boat.addOns.unshift(newAddOn);
+
+    await boat.save();
+
+    res.json(boat);
+  } catch (err) {
+    console.error(err.message);
     res.status(500).send("Server Error");
   }
 });
