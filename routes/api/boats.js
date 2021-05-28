@@ -6,6 +6,10 @@ const { check, validationResult } = require("express-validator");
 const Boats = require("../../models/Boats");
 const User = require("../../models/User");
 
+//@route    POST api/boats
+//@desc     Create & update boat resource
+//@access   private
+
 router.post(
   "/",
   [
