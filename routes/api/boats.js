@@ -63,6 +63,9 @@ router.post(
 
 router.get("/", async (req, res) => {
   try {
+    if (!boats) {
+      res.status(400).json({ msg: "No boats avilable" });
+    }
     const boats = await Boats.find().sort({ date: -1 });
     res.json(boats);
   } catch (err) {
